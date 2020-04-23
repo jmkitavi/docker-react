@@ -6,6 +6,8 @@ WORKDIR '/app'
 COPY package.json .
 RUN yarn
 
-COPY . .
+# when using docker compose mapping current dir to app
+# might skip this, but better to leave there
+COPY . . 
 
 CMD ["yarn", "start"]

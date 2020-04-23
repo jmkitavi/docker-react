@@ -1,0 +1,21 @@
+version: '3'
+services:
+  web:
+    stdin_open: true
+    build: # can't use . cause Dockerfile named different
+      context: . # look in current dir 
+      dockerfile: Dockerfile.dev # use this file
+    ports:
+      - "3000:3000"
+    volumes:
+      - /app/node_modules # don't touch nodemodules in container
+      - .:/app # map current dir to /app in container
+  tests:
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - .:/app
+    command: ["npm", "run", "test"]
