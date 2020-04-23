@@ -19,6 +19,6 @@ EXPOSE 80
 
 # copy what we want from build phase to nginx
 # use build phase numbering 0
-COPY --from=O /app/build /usr/share/nginx/html
+COPY --from=0 /app/build /usr/share/nginx/html
 
 # nginx started automatically
